@@ -1,0 +1,52 @@
+plugins {
+    // 26.x 起 Minecraft 不再混淆，必须使用不重映射的 Loom 插件变体。
+    // 旧的 'fabric-loom' 会走完整 remap 管线并要求 mappings。
+    id 'net.fabricmc.fabric-loom' version '1.19.3'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // 没有 mappings：26.x 的 jar 本身就是可读名
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    // 用 filter 而不是 expand：expand 会把 description 里的 \n 转成真换行，
+    // 让 fabric.mod.json 变成非法 JSON。
+    filesMatching('fabric.mod.json') {
+        filter { String line -> line.replace('${version}', project.version.toString()) }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = 'UTF-8'
+    it.options.release = 25
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+    withSourcesJar()
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}

@@ -1,0 +1,28 @@
+# gradle
+.gradle/
+build/
+out/
+
+# 游戏测试环境（loom 的 run/ 目录，里面是存档与日志）
+run/
+logs/
+*.log
+
+# 开发期的临时产物
+icon_preview/
+*.psd
+
+# ide
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# mac / windows
+.DS_Store
+Thumbs.db
+desktop.ini

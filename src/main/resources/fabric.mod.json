@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "handybell",
+  "version": "${version}",
+  "name": "HandyBell",
+  "description": "给事钟 / HandyBell —— 把命名过的钟变成随身指令面板。\n\n把钟命名为「给事钟」「給事鐘」或「HandyBell」后放下：空手右键弹出 3×3 按钮面板，潜行右键打开配置页，潜行拿染料可切换颜色分组（16 色，每色一套独立方案）。\n\n纯客户端模组，拦截右键不发包，因此敲钟不会惊动村民与袭击者。可选联动 Command Keys：装了就直接选它的指令集，没装也能手写命令。",
+  "authors": [
+    "MANGZHONG233"
+  ],
+  "license": "MIT",
+  "icon": "assets/handybell/icon.png",
+  "contact": {
+    "sources": "https://github.com/MANGZHONG233/HandyBell",
+    "issues": "https://github.com/MANGZHONG233/HandyBell/issues"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "local.handybell.HandyBellClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "handybell.mixins.json"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "26.3"
+  },
+  "suggests": {
+    "commandkeys": "*"
+  }
+}

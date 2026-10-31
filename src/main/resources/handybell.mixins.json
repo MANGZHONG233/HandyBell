@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "local.handybell.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [],
+  "client": [
+    "BellRenderStateMixin",
+    "BellRendererMixin",
+    "MixinBellBlockEntity",
+    "MixinChatCommand",
+    "MixinMinecraft",
+    "MixinMultiPlayerGameMode"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
